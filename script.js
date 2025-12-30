@@ -117,11 +117,12 @@ const questions =[
   {id: 35, text: "時間の過ぎ方が普段と違うように感じた．", factor:"時間感覚の喪失"},
   {id: 36, text: "演奏は素晴らしい喜びに導いてくれた．", factor:"自己目的的体験"},
 ];
+const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
 
 const area =document.getElementById("questionArea");
 /* question.id と question.text を使ってHTMLを組み立ててquestionArea の中に入れる */
 // questions の中から1個ずつ質問を取り出してそれをquestionという名前で扱う
-questions.forEach((question) => {
+shuffledQuestions.forEach((question) => {
   let optionsHTML = "";
   for (let i = 1; i <= 5; i++){
     optionsHTML +=`
