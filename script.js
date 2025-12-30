@@ -126,11 +126,18 @@ shuffledQuestions.forEach((question) => {
   let optionsHTML = "";
   for (let i = 1; i <= 5; i++){
     optionsHTML +=`
-    <label><input type="radio" name="q${question.id}" value="${i}">${i}</label>
+    <label>
+    <input type="radio" name="q${question.id}" value="${i}"> ${i}
+    </label>
     `;
   }
   area.innerHTML +=`
-  <div style ="margin-bottom: 16px;"><p>${question.id}.${question.text}</p>${optionsHTML}</div>
+  <div class="question">
+   <p>${question.id}.${question.text}</p>
+   <div class ="options">
+   ${optionsHTML}
+   </div>
+   </div>
   `;
 })
 
