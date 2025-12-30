@@ -23,3 +23,6 @@ Flow State Scale（36項目）とBorgスケール（6–20）を用いた研究�
 
 ## Purpose
 研究用アンケート電子化の学習・試作
+
+## Demo
+https://github.com/yukiyaminagawa/fss-borg-questionnaire/settings/pages
