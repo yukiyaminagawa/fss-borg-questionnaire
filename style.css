@@ -1,0 +1,27 @@
+
+body{
+  font-family: sans-serif;
+};
+
+
+
+
+#borgTable {
+  margin-bottom: 24px;
+}
+
+.borg-table {
+  border-collapse: collapse;
+  width: 300px;
+}
+
+.borg-table td {
+  border: 1px solid #000;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.borg-table td:first-child {
+  width: 60px;
+  text-align: center;
+}
