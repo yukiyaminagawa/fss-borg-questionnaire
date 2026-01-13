@@ -155,7 +155,23 @@ document.addEventListener("change" , (event) =>{
   }
 });
 
-function createCSV(questions, answers, borgValue){
+const freeCommentArea = document.createElement("div");
+freeCommentArea.innerHTML = `
+  <h3>自由記述</h3>
+  <p>
+    最後に行った演奏，または実験手順やアンケートについて，
+    わかりにくかった点ややりづらかった点，
+    その他感想等がございましたら，下の欄に記述してください．
+  </p>
+  <textarea id="freeComment" rows="5" style="width:100%;"></textarea>
+`;
+
+document
+.getElementById("freeCommentArea")
+.appendChild(freeCommentArea);
+
+
+function createCSV(questions, answers, borgValue, freeComment){
   // 1行目
   const meta = `# borg,${borgValue ?? ""}`;
   const header ="question_id,factor,question_text,answer";
@@ -164,14 +180,17 @@ function createCSV(questions, answers, borgValue){
     const answer =answers[q.id] ?? "";
     return `${q.id},${q.factor},"${q.text}",${answer}`;
   });
+  const safeComment = freeComment.replace(/"/g,'""');
+  const commentRow = `comment, 自由記述, " ", "${freeComment.replace(/"/g,'" "')}"`;
 
-  return meta + "\n" +header + "\n" + rows.join("\n");
+  return meta + "\n" +header + "\n" + rows.join("\n") + "\n"+ commentRow;
 }
 
 const downloadBtn = document.getElementById("downloadBtn");
 
 downloadBtn.addEventListener("click", () => {
-  const csv = createCSV(questions,answers,borgValue);
+  const freeComment = document.getElementById("freeComment")?.value ?? "";
+  const csv = createCSV(questions,answers,borgValue,freeComment);
 
   const blob = new Blob([csv], {
     type: "text/csv;charset=utf-8;"
